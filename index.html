@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation</title>
+    <style>
+        :root {
+            --primary-color: #F5D2A8;
+            --secondary-color: #FFFFFF;
+            --bg-color: #212121;
+            --ball-size: 4rem;
+            --dot-size: 0.5rem;
+            --container-size: 50rem;
+            --duration: 7s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            box-sizing: border-box;
+            font-size: 62.5%;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: var(--container-size);
+            height: var(--container-size);
+            background-color: var(--bg-color);
+            border-radius: 1rem;
+        }
+
+        .stick {
+            position: relative;
+            width: 50%;
+            height: 1.5rem;
+            background-color: var(--primary-color);
+            border-radius: 100px;
+            animation: rotatingStick 7s ease-in-out infinite;
+        }
+
+        .ball {
+            position: absolute;
+            top: -4rem;
+            width: var(--ball-size);
+            height: var(--ball-size);
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+            animation: rollingBall var(--duration) ease-in-out infinite, ballRotation var(--duration) ease-in-out infinite;
+        }
+
+        .dot {
+            width: var(--dot-size);
+            height: var(--dot-size);
+            border-radius: 100%;
+            background-color: var(--bg-color);
+            position: absolute;
+            left: 1rem;
+            top: 1rem;
+        }
+
+        #roll {
+            display: none;
+        }
+
+        @keyframes rotatingStick {
+            0% {
+                transform: rotate(30deg);
+            }
+
+            50% {
+                transform: rotate(-30deg);
+            }
+
+            100% {
+                transform: rotate(30deg);
+            }
+        }
+
+        @keyframes rollingBall {
+            0% {
+                left: 0;
+            }
+
+            50% {
+                left: 85%;
+            }
+
+            100% {
+                left: 0;
+            }
+        }
+
+        @keyframes ballRotation {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            50% {
+                transform: rotate(360deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animation -->
+    <div class="container">
+        <div class="stick">
+            <div class="ball">
+                <div class="dot"></div>
+            </div>
+        </div>
+    </div>
+    <audio controls autoplay loop id="roll">
+        <source src="ball-roll (2).mp3" type="audio/mpeg">
+    </audio>
+    <script>
+        let audio = document.getElementById('roll');
+        audio.playbackRate = 0.52;
+    </script>
+</body>
+</html>
